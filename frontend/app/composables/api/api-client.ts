@@ -49,7 +49,14 @@ function getRequests(axiosInstance: AxiosInstance): ApiRequestInstance {
     },
 
     async delete<T>(url: string, config?: AxiosRequestConfig) {
-      return await request.safe<T, undefined>(axiosInstance.delete, url, undefined, config);
+      // axios.delete takes (url, config), with no data argument in between, so it can't be handed to
+      // request.safe as it is: the config would land in a third argument that axios ignores
+      return await request.safe<T, undefined>(
+        (requestUrl, _data, requestConfig) => axiosInstance.delete(requestUrl, requestConfig),
+        url,
+        undefined,
+        config,
+      );
     },
   };
 }
