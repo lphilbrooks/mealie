@@ -326,6 +326,26 @@
         </v-expansion-panel>
       </v-expansion-panels>
 
+      <!--
+        The same action as the house icon above, but with its name on it: the icon alone only explains
+        itself in a tooltip, which a phone never shows.
+      -->
+      <div
+        v-if="listItems.checked && listItems.checked.length && !isSearching"
+        class="d-flex justify-center mt-3"
+      >
+        <v-btn
+          variant="tonal"
+          color="primary"
+          size="large"
+          :prepend-icon="$globals.icons.home"
+          data-testid="mark-checked-on-hand"
+          @click="openMarkCheckedOnHand"
+        >
+          {{ $t('shopping-list.mark-checked-on-hand') }}
+        </v-btn>
+      </div>
+
       <v-alert
         v-if="!hasSearchResults"
         type="info"
