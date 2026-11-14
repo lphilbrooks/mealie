@@ -747,6 +747,8 @@
     "include-tools-on-hand": "Include Tools On Hand",
     "include-substitutions": "Include Substitutions",
     "only-recipes-with-all-ingredients": "Only Show Recipes With Every Ingredient Available",
+    "show-what-we-can-make": "Show what we can make with what we have",
+    "update-what-we-have": "Update what we have",
     "substituting": "Substituting",
     "substitute-for-food": "{substitute} for {food}",
     "max-missing-ingredients": "Max Missing Ingredients",

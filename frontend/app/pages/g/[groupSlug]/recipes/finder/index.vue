@@ -400,6 +400,29 @@
                 <v-card-text class="ma-0 pa-0 text-center">
                   {{ $t("recipe-finder.no-recipes-found-description") }}
                 </v-card-text>
+                <!-- nothing is picked and nothing is found: offer the search that needs no picks -->
+                <v-btn
+                  v-if="isOwnGroup && !state.settings.requireAllFoodsAvailable"
+                  variant="tonal"
+                  color="primary"
+                  size="large"
+                  class="mt-4"
+                  :prepend-icon="$globals.icons.fridge"
+                  data-testid="finder-what-we-can-make"
+                  @click="showWhatWeCanMake"
+                >
+                  {{ $t("recipe-finder.show-what-we-can-make") }}
+                </v-btn>
+                <v-btn
+                  v-else-if="isOwnGroup"
+                  variant="text"
+                  color="primary"
+                  class="mt-4"
+                  :prepend-icon="$globals.icons.fridge"
+                  to="/household/what-we-have"
+                >
+                  {{ $t("recipe-finder.update-what-we-have") }}
+                </v-btn>
               </v-col>
             </v-row>
           </v-container>
@@ -639,6 +662,12 @@ const recipeSuggestions = computed<RecipeSuggestions>(() => {
     missingItems,
   };
 });
+
+function showWhatWeCanMake() {
+  // the settings watcher picks this up and runs the search
+  state.settings.includeFoodsOnHand = true;
+  state.settings.requireAllFoodsAvailable = true;
+}
 
 async function searchSuggestions() {
   // don't search for suggestions if no filter are selected, unless only recipes with every ingredient
