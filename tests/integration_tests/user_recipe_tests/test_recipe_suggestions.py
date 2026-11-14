@@ -933,7 +933,7 @@ def test_require_all_foods_available_with_on_hand_substitute(api_client: TestCli
 
     broth = create_food(unique_user, on_hand=True)
     stock = create_food(unique_user)
-    set_food_substitutions(unique_user, stock, [CreateIngredientFoodSubstitution(substitute_food_id=broth.id)])
+    set_food_substitutions(unique_user, stock, [IngredientFoodSubstitutionCreate(substitute_food_id=broth.id)])
 
     recipe = create_recipe(unique_user, foods=[stock])
     try:

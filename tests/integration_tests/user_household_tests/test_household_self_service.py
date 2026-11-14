@@ -190,7 +190,7 @@ def test_add_foods_on_hand_empty_list(api_client: TestClient, unique_user: TestU
     assert response.status_code == 200
 
 
-def _add_on_hand(api_client: TestClient, user: TestUser, foods: list[IngredientFood]) -> None:
+def _add_on_hand(api_client: TestClient, user: TestUser, foods: list[IngredientFoodOut]) -> None:
     response = api_client.post(
         api_routes.households_self_foods_on_hand, json=[str(food.id) for food in foods], headers=user.token
     )
