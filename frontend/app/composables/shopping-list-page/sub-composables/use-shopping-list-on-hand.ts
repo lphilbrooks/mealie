@@ -2,6 +2,11 @@ import type { ShoppingListItemOut, ShoppingListOut } from "~/lib/api/types/house
 import { useUserApi } from "~/composables/api";
 import { alert } from "~/composables/use-toast";
 
+function hasServerMessage(error: unknown): boolean {
+  const detail = (error as { response?: { data?: { detail?: unknown } } })?.response?.data?.detail;
+  return !!detail;
+}
+
 /**
  * Composable for marking the foods of checked shopping list items as on hand for the user's household,
  * then removing those items from the list
@@ -31,7 +36,12 @@ export function useShoppingListOnHand(
 
     const { error } = await userApi.households.addFoodsOnHand(foodIds);
     if (error) {
-      // the API client has already shown the error, and the items stay on the list
+      // The items stay on the list. The API client shows Mealie's own error message, but this request
+      // opts out of its other toasts, so a failure with no message (the server couldn't be reached, or
+      // a proxy rejected the request) has to be reported here or nothing would appear to happen.
+      if (!hasServerMessage(error)) {
+        alert.error(i18n.t("shopping-list.failed-to-mark-foods-on-hand"));
+      }
       return;
     }
 

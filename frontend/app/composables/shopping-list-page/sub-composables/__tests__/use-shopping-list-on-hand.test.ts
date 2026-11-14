@@ -111,4 +111,24 @@ describe("useShoppingListOnHand", () => {
     expect(mocks.deleteListItems).not.toHaveBeenCalled();
     expect(mocks.alert.success).not.toHaveBeenCalled();
   });
+
+  test("reports a failure that came with no message from the server", async () => {
+    mocks.addFoodsOnHand.mockResolvedValueOnce({ data: null, error: new Error("Network Error") });
+    setItems([item({ id: "a", checked: true, foodId: "food-1" })]);
+
+    await wrapper.markCheckedItemsOnHand();
+
+    expect(mocks.alert.error).toHaveBeenCalledExactlyOnceWith("Couldn't mark the foods as on hand. Nothing was changed.");
+  });
+
+  test("leaves a failure the server explained to the API client's own message", async () => {
+    const error = { response: { status: 404, data: { detail: { message: "No Entry Found" } } } };
+    mocks.addFoodsOnHand.mockResolvedValueOnce({ data: null, error });
+    setItems([item({ id: "a", checked: true, foodId: "food-1" })]);
+
+    await wrapper.markCheckedItemsOnHand();
+
+    expect(mocks.alert.error).not.toHaveBeenCalled();
+    expect(mocks.deleteListItems).not.toHaveBeenCalled();
+  });
 });
