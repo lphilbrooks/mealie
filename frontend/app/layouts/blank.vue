@@ -1,6 +1,7 @@
 <template>
   <v-app dark>
     <TheSnackbar />
+    <DevEnvironmentBar />
 
     <v-banner
       v-if="$appInfo.demoStatus"

@@ -1,6 +1,7 @@
 <template>
   <v-app dark>
     <TheSnackbar />
+    <DevEnvironmentBar />
 
     <AppHeader :menu="false" />
     <v-main>
