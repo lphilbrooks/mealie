@@ -1363,5 +1363,28 @@
     "mark-all-as-read": "Mark All as Read",
     "show-announcements-from-mealie": "Show announcements from Mealie",
     "show-announcements-setting-description": "Whether or not you want to allow users to see announcements from Mealie. When enabled users can still opt-out from seeing them in their user settings"
+  },
+  "what-we-have": {
+    "title": "What We Have",
+    "subtitle": "Shared with your household. Tap to say what's in the kitchen.",
+    "search-foods": "Search foods",
+    "filter-all": "All",
+    "have-it": "Have it",
+    "run-out": "Run out",
+    "only-foods-in-our-recipes": "Only foods in our recipes",
+    "used-in-recipes": "Not used in any recipe|In one recipe|In {count} recipes",
+    "saving": "Saving…",
+    "all-changes-saved": "All saved",
+    "updated-at": "checked {time}",
+    "refresh": "Refresh",
+    "could-not-save": "Couldn't save. Tap to try again.",
+    "could-not-save-food": "Couldn't save \"{food}\". Nothing was changed.",
+    "changes-not-saved": "No changes failed|One change couldn't be saved|{count} changes couldn't be saved",
+    "could-not-load": "Couldn't load the foods. Check your connection and try again.",
+    "showing-old-list": "Couldn't refresh, so this list may be out of date.",
+    "no-foods-match": "No foods match",
+    "no-foods-match-hint": "Try a different search, or switch the filter to All.",
+    "show-more": "Show more ({count} hidden)",
+    "find-recipes-we-can-make": "Find recipes we can make"
   }
 }
